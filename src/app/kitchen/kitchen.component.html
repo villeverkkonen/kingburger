@@ -1,0 +1,14 @@
+<div class="kitchen">
+  <h1>Kitchen</h1>
+  <h3>Choose ingredients for the King of Burgers</h3>
+
+  <ul *ngIf="ingredients">
+    <li *ngFor="let ingredient of ingredients.ingredients" (click)="addIngredient(ingredient)" class="ingredient-list-object">
+      {{ ingredient.title }}
+    </li>
+  </ul>
+
+  <div class="burger-part-list" *ngIf="burgerParts">
+    <img class="burger-part-item" *ngFor="let burgerPart of burgerParts" [src]="burgerPart.imageUrl" (click)="removeIngredient(burgerPart.runningId)" />
+  </div>
+</div>

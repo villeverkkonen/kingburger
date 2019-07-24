@@ -1,0 +1,28 @@
+.header {
+  background-color: #DB0007;
+  top: 0;
+  left: 0;
+
+  .logo {
+    width: 3em;
+  }
+
+  .router-div {
+    display: inline-block;
+    margin: 10px;
+
+    .router-link {
+      color: #FFBC0D;
+      text-decoration: none;
+      font-size: 1.5em;
+      padding: 5px;
+      margin: auto;
+    }
+
+    .router-link:hover {
+      cursor: pointer;
+      background-color: #FFBC0D;
+      color: #DB0007;
+    }
+  }
+}

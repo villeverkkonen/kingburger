@@ -1,0 +1,28 @@
+.kitchen {
+
+  .ingredient-list-object {
+    width: fit-content;
+    padding: 5px;
+    list-style: none;
+    color: #DB0007;
+  }
+
+  .ingredient-list-object:hover {
+    cursor: pointer;
+    background-color: #DB0007;
+    color: #FFBC0D;
+  }
+
+  .burger-part-list {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: fit-content;
+    margin: 0;
+
+    .burger-part-item {
+      text-align: center;
+      margin: 1px 0 1px 0;
+    }
+  }
+}
