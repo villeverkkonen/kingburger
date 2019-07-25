@@ -1,0 +1,15 @@
+<div class="shop">
+  <h1>Shop</h1>
+
+  <div class="grid-container" *ngIf="ingredients">
+    <div *ngFor="let ingredient of ingredients.ingredients" class="ingredient-list-object">
+      <div class="grid-item">
+        <h3>{{ ingredient.title }}</h3>
+        <img [src]="ingredient.imageUrl" [alt]="ingredient.title" />
+        <div class="button-div">
+          <button (click)="buyIngredient()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

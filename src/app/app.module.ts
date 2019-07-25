@@ -10,6 +10,7 @@ import { KitchenComponent } from './kitchen/kitchen.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { GrillComponent } from './grill/grill.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GrillComponent } from './grill/grill.component';
     KitchenComponent,
     NavComponent,
     HomeComponent,
-    GrillComponent
+    GrillComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

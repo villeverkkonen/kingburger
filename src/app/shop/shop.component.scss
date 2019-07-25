@@ -1,0 +1,54 @@
+.shop {
+
+  .grid-container {
+    background-color: #DB0007;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 5px;
+  }
+
+  .grid-item {
+    background-color: #FFBC0D;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    font-size: 16px;
+    height: 140px;
+    width: 25vw;
+    min-width: 120px;
+    margin: 2px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+
+    h3 {
+      display: block;
+      margin: 5px 0 5px 0;
+    }
+
+    .button-div {
+      position: absolute; 
+      margin-left: -50px;
+      left: 50%;
+      bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #DB0007;
+      color: #FFBC0D;
+      font-size: 1em;
+      width: 100px;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: rgb(159, 2, 7);
+      color: rgb(186, 134, 3);
+    }
+  }
+}
