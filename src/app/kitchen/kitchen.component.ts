@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService } from '../ingredient.service'
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-kitchen',
@@ -9,7 +10,7 @@ import { IngredientService } from '../ingredient.service'
 export class KitchenComponent implements OnInit {
 
   ingredients: Object = []
-  burgerParts: any = []
+  burgerParts: Object[] = []
   runningId: number = 1
 
   constructor( private ingredientService: IngredientService ) { }
@@ -30,5 +31,9 @@ export class KitchenComponent implements OnInit {
 
   removeIngredient(id: number) {
     this.burgerParts = this.burgerParts.filter(burgerPart => burgerPart['runningId'] !== id)
+  }
+
+  drop(event: CdkDragDrop<Object[]>) {
+    moveItemInArray(this.burgerParts, event.previousIndex, event.currentIndex)
   }
 }
