@@ -1,0 +1,41 @@
+.grill {
+
+  .heat-bar {
+    width: 320px;
+    height: 32px;
+    background-color: #DB0007;
+
+    #heat-bar-logo {
+      width: 32px;
+      position: relative;
+    }
+
+    #pointer {
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 32px;
+      height: 31px;
+      display: none;
+      position: absolute;
+    }
+  }
+
+  .heat-bar-buttons {
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #DB0007;
+      color: #FFBC0D;
+      font-size: 1.5em;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: rgb(159, 2, 7);
+      color: rgb(186, 134, 3);
+    }
+  }
+}

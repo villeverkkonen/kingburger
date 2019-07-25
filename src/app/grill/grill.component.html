@@ -1,0 +1,12 @@
+<h1>Grill</h1>
+
+<div class="grill">
+  <div class="heat-bar" id="heat-bar">
+    <img src="assets/images/logo.png" id="heat-bar-logo" />
+    <div id="pointer"></div>
+  </div>
+  <div class="heat-bar-buttons">
+    <button *ngIf="!start" (click)="startGrill()">Start</button>
+    <button *ngIf="!stop" (click)="stopGrill()">Stop</button>
+  </div>
+</div>
