@@ -14,7 +14,7 @@
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 10px;
     font-size: 16px;
-    height: 140px;
+    height: 170px;
     width: 25vw;
     min-width: 120px;
     margin: 2px;
@@ -39,16 +39,24 @@
       padding: 10px;
       border: none;
       border-radius: 10px;
-      background-color: #DB0007;
-      color: #FFBC0D;
       font-size: 1em;
       width: 100px;
     }
 
-    button:hover {
+    .btn-buy {
+      background-color: #DB0007;
+      color: #FFBC0D;
+    }
+
+    .btn-buy:hover {
       cursor: pointer;
       background-color: rgb(159, 2, 7);
       color: rgb(186, 134, 3);
+    }
+
+    .btn-disabled {
+      background-color: grey;
+      color: black;
     }
   }
 }

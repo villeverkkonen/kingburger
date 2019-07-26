@@ -7,16 +7,20 @@
 
     #heat-bar-logo {
       width: 32px;
-      position: relative;
+      height: 32px;
+      display: inline-block;
+      z-index: 1;
+      position: absolute;
     }
 
     #pointer {
       border: 1px solid black;
       border-radius: 50%;
-      width: 32px;
+      width: 31px;
       height: 31px;
       display: none;
       position: absolute;
+      z-index: 2;
     }
   }
 

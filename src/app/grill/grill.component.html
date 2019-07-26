@@ -1,5 +1,7 @@
 <div class="grill">
   <h1>Grill</h1>
+
+  <p>Money: {{ userStore.money }}</p>
   
   <div class="heat-bar" id="heat-bar">
     <img src="assets/images/logo.png" id="heat-bar-logo" />
@@ -8,5 +10,9 @@
   <div class="heat-bar-buttons">
     <button *ngIf="!start" (click)="startGrill()">Start</button>
     <button *ngIf="!stop" (click)="stopGrill()">Stop</button>
+  </div>
+
+  <div clas="winning-price" *ngIf="winningPrice > 0">
+    <p>Winning price: {{ winningPrice }}</p>
   </div>
 </div>

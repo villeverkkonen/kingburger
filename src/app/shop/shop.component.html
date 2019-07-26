@@ -1,13 +1,17 @@
 <div class="shop">
   <h1>Shop</h1>
 
+  <p>Money: {{ userStore.money }}</p>
+
   <div class="grid-container" *ngIf="ingredients">
     <div *ngFor="let ingredient of ingredients.ingredients" class="ingredient-list-object">
       <div class="grid-item">
         <h3>{{ ingredient.title }}</h3>
+        <p>Price: {{ ingredient.price }}</p>
         <img [src]="ingredient.imageUrl" [alt]="ingredient.title" />
         <div class="button-div">
-          <button (click)="buyIngredient()">Buy</button>
+          <button class="btn-buy" (click)="buyIngredient(ingredient)" *ngIf="userStore.money >= ingredient.price">Buy</button>
+          <button disabled class="btn-disabled" *ngIf="ingredient.price > userStore.money">No money</button>
         </div>
       </div>
     </div>

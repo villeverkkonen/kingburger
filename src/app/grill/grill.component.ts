@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStoreService } from '../user-store.service';
 
 @Component({
   selector: 'app-grill',
@@ -9,18 +10,24 @@ export class GrillComponent implements OnInit {
 
   start: boolean = false
   stop: boolean = true
+  pointerPosition: number
+  imgPosition: number
+  winningPrice: number
 
-  constructor() { }
+  constructor(
+    private userStore: UserStoreService
+  ) { }
 
   ngOnInit() {
   }
 
   moveRight(imgObj: any) {
     if (this.start && !this.stop) {
-      if (parseInt(imgObj.style.left) >= 288) {
+      if (this.imgPosition >= 300) {
         this.moveLeft(imgObj)
       } else {
-        imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px'
+        this.imgPosition = parseInt(imgObj.style.left) + 10
+        imgObj.style.left = this.imgPosition + 'px'
         setTimeout(() => {
           this.moveRight(imgObj)
         }, 15)
@@ -30,11 +37,12 @@ export class GrillComponent implements OnInit {
 
   moveLeft(imgObj: any) {
     if (this.start && !this.stop) {
-      if (parseInt(imgObj.style.left) <= 0) {
+      if (this.imgPosition <= 10) {
         this.moveRight(imgObj)
       } else {
+        this.imgPosition = parseInt(imgObj.style.left) - 10
+        imgObj.style.left = this.imgPosition + 'px'
         setTimeout(() => {
-          imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px'
           this.moveLeft(imgObj)
         }, 15)
       }
@@ -44,10 +52,11 @@ export class GrillComponent implements OnInit {
   startGrill() {
     const imgObj = document.getElementById('heat-bar-logo')
     const pointerDiv = document.getElementById('pointer')
-    const pointerPosition = Math.floor(Math.random() * (+288 - +32)) + +32
-    pointerDiv.style.display = 'inline-block'
-    pointerDiv.style.left = `${pointerPosition}px`
-    imgObj.style.left = '0px'
+    this.pointerPosition = Math.floor(Math.random() * (+300 - +10)) + +10
+    this.winningPrice = 0
+    pointerDiv.style.display = 'block'
+    pointerDiv.style.left = `${this.pointerPosition}px`
+    imgObj.style.left = '10px'
     this.start = true
     this.stop = false
     this.moveRight(imgObj)
@@ -56,6 +65,33 @@ export class GrillComponent implements OnInit {
   stopGrill() {
     this.start = false
     this.stop = true
+    this.checkWinningPrices()
+  }
+  
+  checkWinningPrices() {
+    if (this.pointerPosition > this.imgPosition) {
+      if (this.pointerPosition - this.imgPosition <= 5) {
+        this.winningPrice = 5
+      } else if (this.pointerPosition - this.imgPosition <= 10) {
+        this.winningPrice = 3
+      } else if (this.pointerPosition - this.imgPosition <= 20) {
+        this.winningPrice = 2
+      }
+    } else {
+      if (this.imgPosition - this.pointerPosition <= 5) {
+        this.winningPrice = 5
+      } else if (this.imgPosition - this.pointerPosition <= 10) {
+        this.winningPrice = 3
+      } else if (this.imgPosition - this.pointerPosition <= 20) {
+        this.winningPrice = 2
+      }
+    }
+    if (this.winningPrice > 0) {
+      this.payWinningPrice(this.winningPrice)
+    }
   }
 
+  payWinningPrice(amount: number) {
+    this.userStore.addMoney(amount)
+  }
 }

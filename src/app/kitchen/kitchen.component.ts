@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IngredientService } from '../ingredient.service'
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { BurgerStoreService } from '../burger-store.service';
+import { Ingredient } from'../ingredients-store.service';
+import { UserStoreService } from '../user-store.service';
 
 @Component({
   selector: 'app-kitchen',
@@ -9,31 +11,28 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class KitchenComponent implements OnInit {
 
-  ingredients: Object = []
-  burgerParts: Object[] = []
   runningId: number = 1
 
-  constructor( private ingredientService: IngredientService ) { }
+  constructor(
+    private burgerStore: BurgerStoreService,
+    private userStore: UserStoreService
+  ) { }
 
-  ngOnInit() {
-    this.ingredientService.getIngredients()
-      .subscribe(ingredients => {
-        this.ingredients = ingredients
-      })
-  }
+  ngOnInit() {}
 
-  addIngredient(ing: Object) {
-    let ingredient = Object.assign({}, ing)
+  addIngredient(ing: Ingredient) {
+    let ingredient: Ingredient = Object.assign({}, ing)
     ingredient['runningId'] = this.runningId
-    this.burgerParts.push(ingredient)
+    this.burgerStore.addBurgerPart(ingredient)
     this.runningId += 1
+    this.userStore.removeIngredient(this.runningId)
   }
 
   removeIngredient(id: number) {
-    this.burgerParts = this.burgerParts.filter(burgerPart => burgerPart['runningId'] !== id)
+    this.burgerStore.removeBurgerPart(id)
   }
 
   drop(event: CdkDragDrop<Object[]>) {
-    moveItemInArray(this.burgerParts, event.previousIndex, event.currentIndex)
+    moveItemInArray(this.burgerStore.ingredients, event.previousIndex, event.currentIndex)
   }
 }
