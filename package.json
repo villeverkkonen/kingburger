@@ -1,6 +1,7 @@
 {
   "name": "kingburger",
   "version": "0.0.0",
+  "heroku-postbuild": "ng build --aot --target=production",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
