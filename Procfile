@@ -1,1 +1,1 @@
-web: cd frontend && ng build
+web: cd frontend && npm build
