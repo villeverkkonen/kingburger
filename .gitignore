@@ -12,8 +12,8 @@
 /node_modules
 
 # profiling files
-/frontendchrome-profiler-events.json
-/frontendspeed-measure-plugin.json
+/fronten/dchrome-profiler-events.json
+/frontend/speed-measure-plugin.json
 
 # IDEs and editors
 /frontend/.idea
