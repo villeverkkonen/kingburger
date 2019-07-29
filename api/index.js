@@ -8,6 +8,7 @@ const middleware = require('./utils/middleware')
 const config = require('./utils/config')
 const ingredientDb = require('./db/ingredients')
 const server = http.createServer(app)
+const path = require('path')
 
 app.use(express.static(__dirname + '../dist/kingburger'))
 app.use(bodyParser.json())
