@@ -23,8 +23,8 @@ app.get('/api/ingredients', (req, res) => {
     })
 })
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/kingburger/index.html'))
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '../dist/kingburger/index.html'))
 })
 
 app.use(middleware.error)
