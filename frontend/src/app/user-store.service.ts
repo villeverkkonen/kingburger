@@ -41,9 +41,33 @@ export class UserStoreService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.ingredients = this.ingredients.concat(ingredient)
+    let ingredientFound: boolean = false
+    this.ingredients.map(ing => {
+      if (ing.title === ingredient.title) {
+        ing.quantity += 1
+        ingredientFound = true
+      }
+    })
+    if (!ingredientFound) {
+      const newIngredient = {
+        title: ingredient.title,
+        imageUrl: ingredient.imageUrl,
+        price: ingredient.price,
+        id: ingredient.id,
+        quantity: 1
+      }
+      this.ingredients = this.ingredients.concat(newIngredient)
+    }
   }
 
   removeIngredient(id: number) {
+    this.ingredients.map(ing => {
+      if (ing.id === id) {
+        ing.quantity -= 1
+        if (ing.quantity < 0) {
+          ing.quantity = 0
+        }
+      }
+    })
   }
 }

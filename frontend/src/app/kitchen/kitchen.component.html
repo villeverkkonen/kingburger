@@ -4,17 +4,20 @@
   <p>Get money from the grill and buy ingredients from the shop</p>
   <p>Click to remove chosen ingredient and hold mouse to move order</p>
 
-  <ul *ngIf="userStore.ingredients">
-    <li *ngFor="let ingredient of userStore.ingredients" (click)="addIngredient(ingredient)" class="ingredient-list-object">
-      {{ ingredient.title }}
-    </li>
+  <ul>
+    <p>Ingredients:</p>
+    <div *ngFor="let ingredient of userStore.ingredients">
+      <li *ngIf="ingredient.quantity > 0" (click)="addIngredient(ingredient)" class="ingredient-list-object">
+        {{ ingredient.title }} ({{ ingredient.quantity }})
+      </li>
+    </div>
   </ul>
-
-  <div *ngIf="userStore.ingredients.length === 0" class="no-ingredients">
-    <p>No ingredients</p>
-  </div>
 
   <div cdkDropList class="burger-part-list" *ngIf="burgerStore.ingredients" (cdkDropListDropped)="drop($event)">
     <img class="burger-part-item" *ngFor="let burgerPart of burgerStore.ingredients" [src]="burgerPart.imageUrl" [alt]="burgerPart.imageUrl" cdkDrag (click)="removeIngredient(burgerPart.runningId)" />
+  </div>
+
+  <div>
+    <!-- <button (click)="saveBurger()">Save</button> -->
   </div>
 </div>

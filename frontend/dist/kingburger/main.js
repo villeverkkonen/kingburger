@@ -253,6 +253,64 @@ var BurgerStoreService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/burger.service.ts":
+/*!***********************************!*\
+  !*** ./src/app/burger.service.ts ***!
+  \***********************************/
+/*! exports provided: BurgerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BurgerService", function() { return BurgerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+        'Content-Type': 'application/json'
+    })
+};
+var BurgerService = /** @class */ (function () {
+    function BurgerService(http) {
+        this.http = http;
+        this.baseUrl = 'http://localhost:3001/api/burgers';
+    }
+    BurgerService.prototype.handleError = function (operation, result) {
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            console.error(error);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(result);
+        };
+    };
+    BurgerService.prototype.getBurgers = function () {
+        return this.http.get(this.baseUrl)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (burgers) { return console.log('fetched burgers'); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('getBurgers', [])));
+    };
+    BurgerService.prototype.addBurger = function (burger) {
+        return this.http.post(this.baseUrl, burger, httpOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (burger) { return console.log("added burger w/ id=" + burger._id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('addProduct')));
+    };
+    BurgerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], BurgerService);
+    return BurgerService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/grill/grill.component.html":
 /*!********************************************!*\
   !*** ./src/app/grill/grill.component.html ***!
@@ -490,7 +548,7 @@ var IngredientService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"kitchen\">\n  <h1>Kitchen</h1>\n  \n  <p>Get money from the grill and buy ingredients from the shop</p>\n  <p>Click to remove chosen ingredient and hold mouse to move order</p>\n\n  <ul *ngIf=\"userStore.ingredients\">\n    <li *ngFor=\"let ingredient of userStore.ingredients\" (click)=\"addIngredient(ingredient)\" class=\"ingredient-list-object\">\n      {{ ingredient.title }}\n    </li>\n  </ul>\n\n  <div *ngIf=\"userStore.ingredients.length === 0\" class=\"no-ingredients\">\n    <p>No ingredients</p>\n  </div>\n\n  <div cdkDropList class=\"burger-part-list\" *ngIf=\"burgerStore.ingredients\" (cdkDropListDropped)=\"drop($event)\">\n    <img class=\"burger-part-item\" *ngFor=\"let burgerPart of burgerStore.ingredients\" [src]=\"burgerPart.imageUrl\" [alt]=\"burgerPart.imageUrl\" cdkDrag (click)=\"removeIngredient(burgerPart.runningId)\" />\n  </div>\n</div>"
+module.exports = "<div class=\"kitchen\">\n  <h1>Kitchen</h1>\n  \n  <p>Get money from the grill and buy ingredients from the shop</p>\n  <p>Click to remove chosen ingredient and hold mouse to move order</p>\n\n  <ul>\n    <p>Ingredients:</p>\n    <div *ngFor=\"let ingredient of userStore.ingredients\">\n      <li *ngIf=\"ingredient.quantity > 0\" (click)=\"addIngredient(ingredient)\" class=\"ingredient-list-object\">\n        {{ ingredient.title }} ({{ ingredient.quantity }})\n      </li>\n    </div>\n  </ul>\n\n  <div cdkDropList class=\"burger-part-list\" *ngIf=\"burgerStore.ingredients\" (cdkDropListDropped)=\"drop($event)\">\n    <img class=\"burger-part-item\" *ngFor=\"let burgerPart of burgerStore.ingredients\" [src]=\"burgerPart.imageUrl\" [alt]=\"burgerPart.imageUrl\" cdkDrag (click)=\"removeIngredient(burgerPart.runningId)\" />\n  </div>\n\n  <div>\n    <!-- <button (click)=\"saveBurger()\">Save</button> -->\n  </div>\n</div>"
 
 /***/ }),
 
@@ -520,30 +578,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
 /* harmony import */ var _burger_store_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../burger-store.service */ "./src/app/burger-store.service.ts");
 /* harmony import */ var _user_store_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user-store.service */ "./src/app/user-store.service.ts");
+/* harmony import */ var _burger_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../burger.service */ "./src/app/burger.service.ts");
+
 
 
 
 
 
 var KitchenComponent = /** @class */ (function () {
-    function KitchenComponent(burgerStore, userStore) {
+    function KitchenComponent(burgerStore, userStore, burgerService) {
         this.burgerStore = burgerStore;
         this.userStore = userStore;
+        this.burgerService = burgerService;
         this.runningId = 1;
     }
     KitchenComponent.prototype.ngOnInit = function () { };
     KitchenComponent.prototype.addIngredient = function (ing) {
         var ingredient = Object.assign({}, ing);
-        ingredient['runningId'] = this.runningId;
+        ingredient.runningId = this.runningId;
         this.burgerStore.addBurgerPart(ingredient);
         this.runningId += 1;
-        this.userStore.removeIngredient(this.runningId);
+        this.userStore.removeIngredient(ing.id);
     };
     KitchenComponent.prototype.removeIngredient = function (id) {
         this.burgerStore.removeBurgerPart(id);
+        this.userStore.removeIngredient(id);
     };
     KitchenComponent.prototype.drop = function (event) {
         Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_2__["moveItemInArray"])(this.burgerStore.ingredients, event.previousIndex, event.currentIndex);
+    };
+    KitchenComponent.prototype.saveBurger = function () {
+        var burger = {
+            name: 'Testi',
+            ingredients: Object.assign({}, this.burgerStore.ingredients)
+        };
+        this.burgerService.addBurger(burger);
     };
     KitchenComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -552,7 +621,8 @@ var KitchenComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./kitchen.component.scss */ "./src/app/kitchen/kitchen.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_burger_store_service__WEBPACK_IMPORTED_MODULE_3__["BurgerStoreService"],
-            _user_store_service__WEBPACK_IMPORTED_MODULE_4__["UserStoreService"]])
+            _user_store_service__WEBPACK_IMPORTED_MODULE_4__["UserStoreService"],
+            _burger_service__WEBPACK_IMPORTED_MODULE_5__["BurgerService"]])
     ], KitchenComponent);
     return KitchenComponent;
 }());
@@ -744,9 +814,33 @@ var UserStoreService = /** @class */ (function () {
         configurable: true
     });
     UserStoreService.prototype.addIngredient = function (ingredient) {
-        this.ingredients = this.ingredients.concat(ingredient);
+        var ingredientFound = false;
+        this.ingredients.map(function (ing) {
+            if (ing.title === ingredient.title) {
+                ing.quantity += 1;
+                ingredientFound = true;
+            }
+        });
+        if (!ingredientFound) {
+            var newIngredient = {
+                title: ingredient.title,
+                imageUrl: ingredient.imageUrl,
+                price: ingredient.price,
+                id: ingredient.id,
+                quantity: 1
+            };
+            this.ingredients = this.ingredients.concat(newIngredient);
+        }
     };
     UserStoreService.prototype.removeIngredient = function (id) {
+        this.ingredients.map(function (ing) {
+            if (ing.id === id) {
+                ing.quantity -= 1;
+                if (ing.quantity < 0) {
+                    ing.quantity = 0;
+                }
+            }
+        });
     };
     UserStoreService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
