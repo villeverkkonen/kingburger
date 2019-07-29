@@ -1,6 +1,7 @@
 {
   "name": "kingburger",
   "version": "0.0.0",
+  "main": "index.js",
   "scripts": {
     "ng": "ng",
     "start": "node api/index.js",
