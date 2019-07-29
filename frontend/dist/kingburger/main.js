@@ -468,7 +468,7 @@ var IngredientService = /** @class */ (function () {
         this.http = http;
     }
     IngredientService.prototype.getIngredients = function () {
-        return this.http.get('http://localhost:3001/api/ingredients');
+        return this.http.get('/api/ingredients');
     };
     IngredientService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

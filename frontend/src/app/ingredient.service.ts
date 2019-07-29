@@ -9,6 +9,6 @@ export class IngredientService {
   constructor( private http: HttpClient ) { }
 
   getIngredients() {
-    return this.http.get('http://localhost:3001/api/ingredients')
+    return this.http.get('/api/ingredients')
   }
 }
