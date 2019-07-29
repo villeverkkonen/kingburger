@@ -10,7 +10,7 @@ const ingredientDb = require('./db/ingredients')
 const server = http.createServer(app)
 const path = require('path')
 
-app.use(express.static(__dirname + '/frontend/dist/kingburger'))
+app.use(express.static('frontend/dist/kingburger'))
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
 app.use(cors())
@@ -25,7 +25,7 @@ app.get('/api/ingredients', (req, res) => {
 })
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/frontend/dist/kingburger/index.html'))
+  res.sendFile(path.join('/frontend/dist/kingburger/index.html', { root: '.' }))
 })
 
 app.use(middleware.error)
