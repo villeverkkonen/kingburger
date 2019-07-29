@@ -1,1 +1,1 @@
-web: cd frontend && npm build
+web: cd frontend && run-script heroku-postbuild
