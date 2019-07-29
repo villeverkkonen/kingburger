@@ -15,7 +15,7 @@ export class GrillComponent implements OnInit {
   winningPrice: number
 
   constructor(
-    private userStore: UserStoreService
+    public userStore: UserStoreService
   ) { }
 
   ngOnInit() {

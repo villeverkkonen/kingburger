@@ -14,7 +14,7 @@ export class ShopComponent implements OnInit {
 
   constructor(
     private ingredientService: IngredientService,
-    private userStore: UserStoreService
+    public userStore: UserStoreService
   ) { }
 
   ngOnInit() {

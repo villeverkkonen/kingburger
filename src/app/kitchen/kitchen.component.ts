@@ -14,8 +14,8 @@ export class KitchenComponent implements OnInit {
   runningId: number = 1
 
   constructor(
-    private burgerStore: BurgerStoreService,
-    private userStore: UserStoreService
+    public burgerStore: BurgerStoreService,
+    public userStore: UserStoreService
   ) { }
 
   ngOnInit() {}
