@@ -1,1 +1,0 @@
-web: cd frontend && run-script heroku-postbuild
