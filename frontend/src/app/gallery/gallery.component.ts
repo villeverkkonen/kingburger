@@ -18,8 +18,8 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.burgerService.getBurgers()
-      .subscribe(res => {
-        this.burgers = res
+      .subscribe(burgers => {
+        this.burgers = burgers.sort(this.orderBurgersByVotes)
         this.isLoadingResults = false
       }, err => {
         console.log(err)

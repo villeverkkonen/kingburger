@@ -44,7 +44,7 @@ export class BurgerService {
 
   vote(burger): Observable<Burger> {
     let updatedBurger = burger
-    updatedBurger.votes += 1
+    updatedBurger.votes = updatedBurger.votes + 1
     return this.http.put<Burger>(this.baseUrl + `/${updatedBurger.id}`, updatedBurger)
     .pipe(
       tap((updatedBurger: Burger) => {}),
