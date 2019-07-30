@@ -2,7 +2,7 @@
   <h1>Kitchen</h1>
   
   <p>Get money from the grill and buy ingredients from the shop</p>
-  <p>Click to remove chosen ingredient and hold mouse to move order</p>
+  <p>Hold and drag to move chosen ingredients, click to remove</p>
 
   <ul>
     <p>Ingredients:</p>
@@ -18,7 +18,7 @@
   </div>
 
   <div>
-    <p class="required-error" *ngIf="requiredError">Name (1-10 char) and ingredient(s) are required</p>
+    <p class="required-error" *ngIf="requiredError">Name (1-10 char) and ingredient(s) required</p>
     <input class="save-burger-input" type="text" (change)="updateName($event)" [value]="burgerName" placeholder="Name for burger" />
     <button class="save-burger-btn" (click)="saveBurger()">Save</button>
   </div>
