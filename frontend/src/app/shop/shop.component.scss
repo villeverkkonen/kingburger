@@ -59,4 +59,10 @@
       color: black;
     }
   }
+
+  @media only screen and (max-width: 535px) {
+    .grid-item {
+      flex-basis: 100%;
+    }
+  }
 }

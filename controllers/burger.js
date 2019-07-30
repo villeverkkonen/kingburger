@@ -26,7 +26,8 @@ burgerRouter.post('/', async (req, res) => {
 
     const burger = new Burger({
       name: body.name,
-      ingredients: body.ingredients
+      ingredients: body.ingredients,
+      votes: body.votes
     })
 
     const savedBurger = await burger.save()
@@ -40,6 +41,13 @@ burgerRouter.post('/', async (req, res) => {
     console.log(exception)
     res.status(500).json({ error: 'something went wrong...' })
   }
+})
+
+burgerRouter.put('/:id', (req, res, next) => {
+  Burger.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    if (err) return next(err)
+    res.json(post)
+  })
 })
 
 module.exports = burgerRouter

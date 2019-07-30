@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Ingredient } from'./ingredients-store.service';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { Ingredient } from'../models/ingredient'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class UserStoreService {
 
   constructor() { }
 
-  private readonly _money = new BehaviorSubject<number>(10)
+  private readonly _money = new BehaviorSubject<number>(0)
   private readonly _ingredients = new BehaviorSubject<Ingredient[]>([])
 
   get money(): number {

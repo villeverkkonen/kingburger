@@ -56,4 +56,30 @@
     color: #DB0007;
     margin-top: 5px;
   }
+
+  .loading-results, .required-error {
+    color: #DB0007;
+  }
+
+  .save-burger-input {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .save-burger-btn {
+    background-color: #DB0007;
+    color: #FFBC0D;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    width: 100px;
+  }
+
+  .save-burger-btn:hover {
+    cursor: pointer;
+    background-color: rgb(159, 2, 7);
+    color: rgb(186, 134, 3);
+  }
 }

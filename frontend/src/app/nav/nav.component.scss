@@ -25,4 +25,14 @@
       color: #DB0007;
     }
   }
+
+  @media only screen and (max-width: 450px) {
+    .router-div {
+      margin: 5px;
+
+      .router-link {
+        padding: 0px;
+      }
+    }
+  }
 }

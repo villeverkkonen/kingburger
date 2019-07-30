@@ -1,0 +1,86 @@
+.gallery {
+
+  .grid-container {
+    background-color: #DB0007;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 5px;
+
+    .grid-item {
+      background-color: #FFBC0D;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      padding-bottom: 60px;
+      font-size: 16px;
+      height: fit-content;
+      width: 25vw;
+      min-width: 120px;
+      margin: 2px;
+      border-radius: 5px;
+      text-align: center;
+      position: relative;
+
+      .ingredient-list {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        width: fit-content;
+        margin: auto;
+        
+        .ingredient-img {
+          text-align: center;
+          margin: 1px 0 1px 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    h3 {
+      display: block;
+      margin: 5px 0 5px 0;
+    }
+
+    .button-div {
+      position: absolute; 
+      margin-left: -50px;
+      left: 50%;
+      bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      width: 100px;
+    }
+
+    .btn-vote {
+      background-color: #DB0007;
+      color: #FFBC0D;
+    }
+
+    .btn-vote:hover {
+      cursor: pointer;
+      background-color: rgb(159, 2, 7);
+      color: rgb(186, 134, 3);
+    }
+  }
+
+  .loading-results {
+    color: #DB0007;
+  }
+
+  @media only screen and (max-width: 535px) {
+    .grid-item {
+      flex-basis: 100%;
+    }
+  }
+}

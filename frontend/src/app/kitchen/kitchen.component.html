@@ -18,6 +18,12 @@
   </div>
 
   <div>
-    <!-- <button (click)="saveBurger()">Save</button> -->
+    <p class="required-error" *ngIf="requiredError">Name and ingredient(s) are required</p>
+    <input class="save-burger-input" type="text" (change)="updateName($event)" [value]="burgerName" placeholder="Name for burger" />
+    <button class="save-burger-btn" (click)="saveBurger()">Save</button>
+  </div>
+
+  <div *ngIf="isLoadingResults">
+    <p class="loading-results">Loading...</p>
   </div>
 </div>

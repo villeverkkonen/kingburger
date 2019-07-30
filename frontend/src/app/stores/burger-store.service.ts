@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Ingredient } from'./ingredients-store.service';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { Ingredient } from'../models/ingredient'
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,9 @@ export class BurgerStoreService {
 
   removeBurgerPart(id: number) {
     this.ingredients = this.ingredients.filter(bp => bp.runningId !== id)
+  }
+
+  removeBurger() {
+    this.ingredients = []
   }
 }

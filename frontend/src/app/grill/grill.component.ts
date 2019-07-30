@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UserStoreService } from '../user-store.service';
+import { Component, OnInit } from '@angular/core'
+import { UserStoreService } from '../stores/user-store.service'
 
 @Component({
   selector: 'app-grill',

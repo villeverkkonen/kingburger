@@ -1,0 +1,18 @@
+<div class="gallery">
+  <div *ngIf="isLoadingResults">
+    <p class="loading-results">Loading...</p>
+  </div>
+
+  <div class="grid-container" *ngIf="burgers">
+    <div class="grid-item" *ngFor="let burger of burgers">
+      <h3>{{ burger.name }}</h3>
+      <p>Votes: {{ burger.votes }}</p>
+      <div class="ingredient-list">
+        <img *ngFor="let ingredient of burger.ingredients" class="ingredient-img" [src]="ingredient.imageUrl" [alt]="ingredient.title" />
+      </div>
+      <div class="button-div">
+        <button class="btn-vote" (click)="vote(burger)">Vote</button>
+      </div>
+    </div>
+  </div>
+</div>
