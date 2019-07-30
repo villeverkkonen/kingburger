@@ -53,16 +53,25 @@ export class KitchenComponent implements OnInit {
   }
 
   saveBurger() {
-    if (!this.burgerName || this.burgerStore.ingredients.length === 0) {
+    if (!this.burgerName || this.burgerName.length > 10 || this.burgerStore.ingredients.length === 0) {
       this.displayRequiredError()
       return
     }
+
+    let ingredients = this.burgerStore.ingredients
+
+    Object.keys(ingredients).forEach((key) => {
+      delete ingredients[key].runningId
+      delete ingredients[key].quantity
+    })
+
     this.isLoadingResults = true
     const burger = {
       name: this.burgerName,
-      ingredients: this.burgerStore.ingredients,
+      ingredients: ingredients,
       votes: 0
     }
+    
     this.burgerService.addBurger(burger)
       .subscribe(res => {
         this.burgerStore.removeBurger()

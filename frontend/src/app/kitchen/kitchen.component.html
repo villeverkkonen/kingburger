@@ -18,7 +18,7 @@
   </div>
 
   <div>
-    <p class="required-error" *ngIf="requiredError">Name and ingredient(s) are required</p>
+    <p class="required-error" *ngIf="requiredError">Name (1-10 char) and ingredient(s) are required</p>
     <input class="save-burger-input" type="text" (change)="updateName($event)" [value]="burgerName" placeholder="Name for burger" />
     <button class="save-burger-btn" (click)="saveBurger()">Save</button>
   </div>
