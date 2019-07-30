@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { BurgerService } from '../services/burger.service';
-import { Burger } from '../models/burger';
+import { BurgerService } from '../services/burger.service'
+import { Burger } from '../models/burger'
 
 @Component({
   selector: 'app-gallery',
@@ -30,7 +30,6 @@ export class GalleryComponent implements OnInit {
   vote(id: number) {
     this.burgerService.vote(id)
       .subscribe(res => {
-
       }), err => {
         console.log(err)
       }

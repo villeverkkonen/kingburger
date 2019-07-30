@@ -4,9 +4,8 @@ import { BurgerStoreService } from '../stores/burger-store.service'
 import { Ingredient } from'../models/ingredient'
 import { UserStoreService } from '../stores/user-store.service'
 import { BurgerService } from '../services/burger.service'
-import { KitchenStoreService } from '../stores/kitchen-store.service';
-import { Burger } from '../models/burger';
-import { Router } from '@angular/router';
+import { KitchenStoreService } from '../stores/kitchen-store.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-kitchen',
@@ -15,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class KitchenComponent implements OnInit {
 
-  data: Burger[] = []
   isLoadingResults: boolean = false
   burgerName: string = ''
   requiredError: boolean = false
@@ -41,7 +39,6 @@ export class KitchenComponent implements OnInit {
   removeIngredient(id: number) {
     this.burgerStore.removeBurgerPart(id)
     this.userStore.removeIngredient(id)
-    
   }
 
   drop(event: CdkDragDrop<Object[]>) {
@@ -58,14 +55,13 @@ export class KitchenComponent implements OnInit {
       return
     }
 
+    this.isLoadingResults = true
     let ingredients = this.burgerStore.ingredients
-
-    Object.keys(ingredients).forEach((key) => {
+    Object.keys(ingredients).forEach(key => {
       delete ingredients[key].runningId
       delete ingredients[key].quantity
     })
 
-    this.isLoadingResults = true
     const burger = {
       name: this.burgerName,
       ingredients: ingredients,
@@ -75,14 +71,12 @@ export class KitchenComponent implements OnInit {
     this.burgerService.addBurger(burger)
       .subscribe(res => {
         this.burgerStore.removeBurger()
-        this.isLoadingResults = false
-        this.burgerName = ''
         this.router.navigate(['/gallery'])
       }), err => {
         console.log(err)
-        this.isLoadingResults = false
-        this.burgerName = ''
       }
+      this.isLoadingResults = false
+      this.burgerName = ''
   }
 
   displayRequiredError() {

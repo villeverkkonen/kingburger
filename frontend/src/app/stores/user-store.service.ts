@@ -40,6 +40,16 @@ export class UserStoreService {
     this._ingredients.next(val)
   }
 
+  get ingredientsAmount(): number {
+    let amount = 0
+    this._ingredients.forEach(ingredients => {
+      Object.keys(ingredients).forEach(key => {
+        amount += ingredients[key].quantity
+      })
+    })
+    return amount
+  }
+
   addIngredient(ingredient: Ingredient) {
     let ingredientFound: boolean = false
     this.ingredients.map(ing => {

@@ -14,12 +14,9 @@ export class GrillComponent implements OnInit {
   imgPosition: number
   winningPrice: number
 
-  constructor(
-    public userStore: UserStoreService
-  ) { }
+  constructor( public userStore: UserStoreService ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   moveRight(imgObj: any) {
     if (this.start && !this.stop) {

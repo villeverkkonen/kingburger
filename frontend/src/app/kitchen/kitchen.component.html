@@ -1,11 +1,10 @@
 <div class="kitchen">
   <h1>Kitchen</h1>
   
-  <p>Get money from the grill and buy ingredients from the shop</p>
-  <p>Hold and drag to move chosen ingredients, click to remove</p>
+  <p *ngIf="userStore.ingredientsAmount <= 0">Get money from the grill and buy ingredients from the shop</p>
+  <p *ngIf="userStore.ingredientsAmount > 0">Hold and drag to move chosen ingredients, click to remove</p>
 
-  <ul>
-    <p>Ingredients:</p>
+  <ul *ngIf="userStore.ingredientsAmount > 0">
     <div *ngFor="let ingredient of userStore.ingredients">
       <li *ngIf="ingredient.quantity > 0" (click)="addIngredient(ingredient)" class="ingredient-list-object">
         {{ ingredient.title }} ({{ ingredient.quantity }})
@@ -17,7 +16,7 @@
     <img class="burger-part-item" *ngFor="let burgerPart of burgerStore.ingredients" [src]="burgerPart.imageUrl" [alt]="burgerPart.imageUrl" cdkDrag (click)="removeIngredient(burgerPart.runningId)" />
   </div>
 
-  <div>
+  <div *ngIf="burgerStore.ingredients.length > 0">
     <p class="required-error" *ngIf="requiredError">Name (1-10 char) and ingredient(s) required</p>
     <input class="save-burger-input" type="text" (change)="updateName($event)" [value]="burgerName" placeholder="Name for burger" />
     <button class="save-burger-btn" (click)="saveBurger()">Save</button>

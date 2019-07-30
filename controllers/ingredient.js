@@ -1,5 +1,5 @@
-const ingredientRouter = require('express').Router();
-const ingredientDb = require('../db/ingredients');
+const ingredientRouter = require('express').Router()
+const ingredientDb = require('../db/ingredients')
 
 ingredientRouter.get('/', (req, res) => {
   res.status(200)
@@ -8,4 +8,4 @@ ingredientRouter.get('/', (req, res) => {
     })
 })
 
-module.exports = ingredientRouter;
+module.exports = ingredientRouter

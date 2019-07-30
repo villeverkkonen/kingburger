@@ -2,7 +2,6 @@ const burgerRouter = require('express').Router()
 const Burger = require('../models/burger')
 
 burgerRouter.get('/', async (req, res) => {
-  console.log("OMG")
   try {
     const burgers = await Burger.find({})
     if (burgers) {
@@ -15,13 +14,10 @@ burgerRouter.get('/', async (req, res) => {
 })
 
 burgerRouter.post('/', async (req, res) => {
-  console.log("LOL")
   try {
     const body = req.body
-    console.log("BODY")
-    console.log(body)
-    if (body.name === undefined) {
-      return res.status(400).json({ error: 'name missing' })
+    if (body.name === undefined || body.ingredients.length === 0) {
+      return res.status(400).json({ error: 'name or ingredients missing' })
     }
 
     const burger = new Burger({

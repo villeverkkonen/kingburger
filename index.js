@@ -19,7 +19,7 @@ const options = {
   connectTimeoutMS: 30000,
   reconnectTries: 30,
   reconnectInterval: 2000
-};
+}
 
 mongoose
   .connect(config.mongoUrl, options)
@@ -35,8 +35,8 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.static('public'))
 app.use(middleware.logger)
-app.use('/api/burgers', burgerRouter);
-app.use('/api/ingredients', ingredientRouter);
+app.use('/api/burgers', burgerRouter)
+app.use('/api/ingredients', ingredientRouter)
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/frontend/dist/kingburger/index.html'))
@@ -49,5 +49,5 @@ server.listen(config.port, () => {
 })
 
 server.on('close', () => {
-  mongoose.connection.close();
+  mongoose.connection.close()
 })
