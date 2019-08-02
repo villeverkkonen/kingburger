@@ -9,6 +9,7 @@ build the King of Burgers!
 - Angular
 - TypeScript
 - Node
+- Real time voting system with Pusher
 
 ![Grill](https://github.com/villeverkkonen/kingburger/blob/master/documentation/images/grill.png)
 
