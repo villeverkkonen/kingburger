@@ -1,7 +1,7 @@
 import { Ingredient } from './ingredient'
 
 export interface Burger {
-  _id: string
+  id: string
   name: string
   ingredients: Ingredient[]
   votes: number

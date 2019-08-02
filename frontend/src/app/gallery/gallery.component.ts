@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { BurgerService } from '../services/burger.service'
 import { Burger } from '../models/burger'
+import { PusherService } from '../services/pusher.service';
 
 @Component({
   selector: 'app-gallery',
@@ -13,7 +14,8 @@ export class GalleryComponent implements OnInit {
   isLoadingResults: boolean = true
 
   constructor(
-    private burgerService: BurgerService
+    private burgerService: BurgerService,
+    private pusherService: PusherService
   ) { }
 
   ngOnInit() {
@@ -25,15 +27,29 @@ export class GalleryComponent implements OnInit {
         console.log(err)
         this.isLoadingResults = false
       })
+
+    this.pusherService.channel.bind('vote-event', data => {
+      this.burgerService.getBurger(data.id)
+        .subscribe((votedBurger: Burger) => {
+          this.burgers.map(burger => {
+            if (burger.id === votedBurger.id) {
+              burger.votes = votedBurger.votes
+            }
+          })
+          this.burgers = this.burgers.sort(this.orderBurgersByVotes)
+        }, err => {
+          console.log(err)
+        })
+    })
   }
 
-  vote(id: number) {
-    this.burgerService.vote(id)
-      .subscribe(res => {
+  vote(burger: Burger) {
+    this.burgerService.vote(burger)
+      .subscribe((res: any) => {
+        this.pusherService.vote(burger.id)
       }), err => {
         console.log(err)
       }
-    this.burgers.sort(this.orderBurgersByVotes)
   }
 
   orderBurgersByVotes(a: Burger, b: Burger) {

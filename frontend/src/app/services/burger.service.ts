@@ -17,7 +17,9 @@ export class BurgerService {
 
   baseUrl: string = '/api/burgers'
 
-  constructor( private http: HttpClient ) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -29,16 +31,24 @@ export class BurgerService {
   getBurgers(): Observable<Burger[]> {
     return this.http.get<Burger[]>(this.baseUrl)
     .pipe(
-      tap(burgers => {}),
+      tap(_ => {}),
       catchError(this.handleError('getBurgers', []))
+    )
+  }
+
+  getBurger(id: string): Observable<Burger> {
+    return this.http.get<Burger>(`${this.baseUrl}/${id}`)
+    .pipe(
+      tap(_ => {}),
+      catchError(this.handleError<Burger>('getBurger'))
     )
   }
 
   addBurger(burger): Observable<Burger> {
     return this.http.post<Burger>(this.baseUrl, burger, httpOptions)
     .pipe(
-      tap((burger: Burger) => {}),
-        catchError(this.handleError<Burger>('addProduct'))
+      tap(_ => {}),
+      catchError(this.handleError<Burger>('addBurger'))
     )
   }
 
@@ -47,8 +57,8 @@ export class BurgerService {
     updatedBurger.votes = updatedBurger.votes + 1
     return this.http.put<Burger>(this.baseUrl + `/${updatedBurger.id}`, updatedBurger)
     .pipe(
-      tap((updatedBurger: Burger) => {}),
-        catchError(this.handleError<Burger>('vote'))
+      tap(_ => {}),
+      catchError(this.handleError<Burger>('vote'))
     )
   }
 }

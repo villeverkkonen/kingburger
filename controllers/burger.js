@@ -1,11 +1,33 @@
 const burgerRouter = require('express').Router()
 const Burger = require('../models/burger')
+const Pusher = require('pusher')
+const config = require('../utils/config')
+
+const pusher = new Pusher({
+  appId: config.pusherAppId,
+  key: config.pusherKey,
+  secret: config.pusherSecret,
+  cluster: config.pusherCluster,
+  forceTLS: true
+})
 
 burgerRouter.get('/', async (req, res) => {
   try {
     const burgers = await Burger.find({})
     if (burgers) {
       res.json(burgers.map(Burger.format))
+    }
+  } catch (exception) {
+    console.log(exception)
+    res.status(500).json({ error: 'something went wrong...' })
+  }
+})
+
+burgerRouter.get('/:id', async (req, res) => {
+  try {
+    const burger = await Burger.findById(req.params.id)
+    if (burger) {
+      res.json(Burger.format(burger))
     }
   } catch (exception) {
     console.log(exception)
@@ -44,6 +66,18 @@ burgerRouter.put('/:id', (req, res, next) => {
     if (err) return next(err)
     res.json(post)
   })
+})
+
+burgerRouter.post("/vote/:id", async (req, res) => {
+  try {
+    pusher.trigger("vote-channel", "vote-event", {
+      'id': req.params.id
+    })
+    res.json(req.params.id)
+  } catch (exception) {
+    console.log(exception)
+    res.status(500).json({ error: 'something went wrong...' })
+  }
 })
 
 module.exports = burgerRouter

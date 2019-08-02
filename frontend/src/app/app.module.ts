@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component'
 import { GrillComponent } from './grill/grill.component'
 import { ShopComponent } from './shop/shop.component'
 import { GalleryComponent } from './gallery/gallery.component'
+import { PusherService } from './services/pusher.service'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { GalleryComponent } from './gallery/gallery.component'
     FlexLayoutModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [PusherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,8 +8,7 @@ const ingredients = [
   {
     title: 'Salad',
     imageUrl: '/api/images/salad.png',
-    price: 2
-    ,
+    price: 2,
     id: 2
   },
   {
