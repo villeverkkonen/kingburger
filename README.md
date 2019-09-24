@@ -10,7 +10,7 @@ build the King of Burgers!
 - TypeScript
 - Node
 - MongoDB
-- Real time voting system with Pusher
+- WebSocket
 
 ![Grill](https://github.com/villeverkkonen/kingburger/blob/master/documentation/images/grill.png)
 
