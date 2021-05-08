@@ -31,7 +31,7 @@
     "@angular/platform-browser-dynamic": "^7.2.16",
     "@angular/router": "^7.2.16",
     "core-js": "^2.6.11",
-    "handlebars": ">=4.3.0",
+    "handlebars": ">=4.7.7",
     "pusher-js": "^5.1.0",
     "rxjs": "^6.5.4",
     "serialize-javascript": ">=3.1.0",
